@@ -3,6 +3,7 @@ import hello
 import unittest
 import tempfile
 
+
 class HelloTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -18,14 +19,14 @@ class HelloTestCase(unittest.TestCase):
     def test_empty_db(self):
         rv = self.app.get('/')
         assert 'No entries by now' in str(rv.data)
-    
+
     def login(self, user, pw):
         return self.app.post('/login', data=dict(
-            username = user,
-            password = pw), follow_redirects = True)
+            username=user,
+            password=pw), follow_redirects=True)
 
     def logout(self):
-        return self.app.get('/logout', follow_redirects = True)
+        return self.app.get('/logout', follow_redirects=True)
 
     def test_auth(self):
         rv = self.login('qd', 'default')
@@ -40,9 +41,9 @@ class HelloTestCase(unittest.TestCase):
     def test_messages(self):
         self.login('qd', 'default')
         rv = self.app.post('/add', data=dict(
-            title = '<Hello>',
-            text = '<strong>HTML</strong> allowed here'),
-                           follow_redirects = True)
+            title='<Hello>',
+            text='<strong>HTML</strong> allowed here'),
+            follow_redirects=True)
         assert 'No entries by now' not in str(rv.data)
         assert '&lt;Hello&gt;' in str(rv.data)
         assert '<strong>HTML</strong> allowed here' in str(rv.data)
