@@ -5,4 +5,6 @@ The plan:
 * ...
 * profit
 
+UPD: now there is my Flask tutorial project
+
 done.
